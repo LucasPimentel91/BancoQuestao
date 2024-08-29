@@ -8,7 +8,10 @@
          <h1>Adicionar questão</h1>
          <h3>Preencha esse formulário para criar a questão:</h3>
          <br></br>
-         <form>
+         <form method="POST" action="{{ url_for('adicionar') }}">
+         <label for="categoria">Categoria:</label>
+         <input type="categoria" id="categoria" name="categoria" required>
+         <br></br>
          <label for="enunciado">Enunciado:</label>
          <input type="enunciado" id="enunciado" name="enunciado" required>
          <br></br>
