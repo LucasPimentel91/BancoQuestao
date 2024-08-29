@@ -9,7 +9,7 @@
         <h1>Lista de Questões</h1>
         <ul>
             {% for questao in questoes %}
-            <li>{{ questao.enunciado }}<br>Categoria: {{ questao.categoria }}<br>{{ questoes.alternativa1 }}<br>{{ questoes.alternativa2 }}<br>{{ questoes.alternativa3 }}<br>{{ questoes.alternativa4 }}<br>{{ questoes.alternativa5 }}<br>Resposta: {{ questao.resposta_correta }}</li>
+            <li>{{ questao.enunciado }}<br>Categoria: {{ questao.categoria }}<br>{{ questao.alternativa1 }}<br>{{ questao.alternativa2 }}<br>{{ questao.alternativa3 }}<br>{{ questao.alternativa4 }}<br>{{ questao.alternativa5 }}<br>Resposta: {{ questao.resposta_correta }}</li>
             {% endfor %}
         </ul>
     </body>
