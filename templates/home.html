@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
-        <meta charset="utf-8">
-        <title>Flask Tutorial</title>
+       <meta charset="utf-8">
+        <title>QuestionBanc</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
     </head>
     <body>
-         <h1>My First Try Using Flask</h1>
-         <p>Flask is Fun</p>
+    <header>
+        <div class="container">
+            <h1 class="logo">Question Banc</h1>
+            <h3>Encontre aqui desafios para aprimorar seus conhecimentos</h3>
+            <strong>
+                <nav>
+                    <ul class="menu">
+                        <li><a href="{{ url_for('questoes') }}">Responder<br>Questões</a></li>
+                        <li><a href="{{ url_for('config') }}">Configuração</a></li>
+                    </ul>
+                </nav>
+            </strong>
+        </div>
+        </header>
+
+        {% block content %}
+        {% endblock %}
+
     </body>
+</html>

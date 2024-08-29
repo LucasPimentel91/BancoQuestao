@@ -18,28 +18,34 @@ class Questao(db.Model):
         return f"<Questao {self.enunciado}>"
 
 @app.route('/')
-def template():
-    return render_template("template.html")
-
-@app.route('/home')
 def home():
     return render_template("home.html")
 
-@app.route('/about')
-def about():
-    return render_template("about.html")
+@app.route('/questoes', methods=['GET'])
+def questoes():
+    questoes = Questao.query.all()
+    return render_template("questoes.html", questoes=questoes)
 
-@app.route('/add')
-def add_questao():
+@app.route('/config')
+def config():
+    return render_template("config.html")
+
+@app.route('/adicionar')
+def adicionar():
     nova_questao = Questao(enunciado="Qual a capital da França?", resposta_correta="Paris", categoria="Geografia")
     db.session.add(nova_questao)
     db.session.commit()
-    return "Questão adicionada com sucesso!"
+    return render_template("adicionar.html")
 
-@app.route('/questoes')
-def exibir_questoes():
-    questoes = Questao.query.all()
-    return render_template("questoes.html", questoes=questoes)
+@app.route('/editar')
+def editar():
+    return render_template("editar.html")
+
+@app.route('/excluir')
+def excluir():
+    return render_template("excluir.html")
+
+
 
 if __name__ == "__main__":
     with app.app_context():

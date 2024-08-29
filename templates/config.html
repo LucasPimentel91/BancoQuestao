@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Configuração do Banco</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/config.css') }}">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <h1 class="logo">Question Banc</h1>
+                <h3>Escolha entre as opções abaixo:</h3>
+                <strong>
+                    <nav>
+                        <ul class="menu">
+                            <li><a href="{{ url_for('adicionar') }}">Adiconar questão</a></li>
+                            <li><a href="{{ url_for('editar') }}">Editar questão</a></li>
+                            <li><a href="{{ url_for('excluir') }}">Excluir questão</a></li>
+                        </ul>
+                    </nav>
+                </strong>
+            </div>
+        </header>
+    </body>
+</html>
