@@ -49,8 +49,12 @@ def adicionar():
         nova_questao = Questao(enunciado=enunciado, resposta_correta=resposta_correta, categoria=categoria, alternativa1=alternativa1, alternativa2=alternativa2, alternativa3=alternativa3, alternativa4=alternativa4, alternativa5=alternativa5)
         db.session.add(nova_questao)
         db.session.commit()
-        return redirect(url_for('questoes'))  # Redireciona para a página que exibe as questões após a adição
+        return redirect(url_for('confirmado'))  # Redireciona para a página que exibe as questões após a adição
     return render_template("adicionar.html")
+
+@app.route('/confirmado')
+def confirmado():
+    return render_template("confirmado.html")
 
 @app.route('/editar')
 def editar():
