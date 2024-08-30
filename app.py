@@ -30,7 +30,7 @@ def home():
 
 @app.route('/questoes')
 def questoes():
-    return render_template("questoes.html", questoes=questoes)
+    return render_template("questoes.html")
 
 @app.route('/verificar_resposta', methods=['POST'])
 def verificar_resposta():
