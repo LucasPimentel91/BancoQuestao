@@ -19,7 +19,7 @@ class Questao(db.Model):
     alternativa3 = db.Column(db.String(100), nullable=False)
     alternativa4 = db.Column(db.String(100), nullable=False)
     alternativa5 = db.Column(db.String(100), nullable=False)
-    resposta_marcada = db.Column(db.String(100), nullable=False)
+    resposta_enviada = db.Column(db.String(100), nullable=False)
     
     def __repr__(self):
         return f"<Questao {self.enunciado}>"
@@ -40,11 +40,18 @@ def verificar_resposta():
     # Buscar a questão no banco de dados
     questao = Questao.query.get(questao_id)
     
-    # Verificar se a resposta está correta
-    if questao and resposta_enviada == questao.resposta_correta:
-        return "Resposta correta!"
+    if questao:
+        # Salva a resposta enviada pelo usuário no banco de dados
+        questao.resposta_enviada = resposta_enviada
+        db.session.commit()
+        
+        # Verifica se a resposta está correta
+        if resposta_enviada == questao.resposta_correta:
+            return "Resposta correta!"
+        else:
+            return "Resposta incorreta. Tente novamente."
     else:
-        return "Resposta incorreta. Tente novamente."
+        return "Questão não encontrada", 404
 
 @app.route('/config')
 def config():
@@ -62,7 +69,7 @@ def adicionar():
         alternativa3 = request.form['alternativa3']
         alternativa4 = request.form['alternativa4']
         alternativa5 = request.form['alternativa5']
-        nova_questao = Questao(enunciado=enunciado, resposta_correta=resposta_correta, categoria=categoria, alternativa1=alternativa1, alternativa2=alternativa2, alternativa3=alternativa3, alternativa4=alternativa4, alternativa5=alternativa5)
+        nova_questao = Questao(enunciado=enunciado, resposta_correta=resposta_correta, numero=numero, categoria=categoria, alternativa1=alternativa1, alternativa2=alternativa2, alternativa3=alternativa3, alternativa4=alternativa4, alternativa5=alternativa5, resposta_enviada="")
         db.session.add(nova_questao)
         db.session.commit()
         return redirect(url_for('confirmado'))  # Redireciona para a página que exibe as questões após a adição
