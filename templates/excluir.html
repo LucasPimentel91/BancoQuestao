@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Questão</title>
+</head>
+<body>
+    <h1>Excluir Questão</h1>
+    <h3>Selecione a questão que deseja excluir:</h3>
+    <form method="POST" action="/excluir">
+        <label for="questao_id">Questão:</label>
+        <select id="questao_id" name="questao_id">
+            {% for questao in questoes %}
+                <option value="{{ questao.id }}">{{ questao.enunciado }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <button type="submit">Excluir</button>
+    </form>
+</body>
+</html>

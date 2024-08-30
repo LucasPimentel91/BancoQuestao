@@ -40,8 +40,8 @@ def config():
 def adicionar():
     if request.method == 'POST':
         enunciado = request.form['enunciado']
-        numero = request.form['numero']
         resposta_correta = request.form['resposta']
+        numero = request.form['numero']
         categoria = request.form['categoria']
         alternativa1 = request.form['alternativa1']
         alternativa2 = request.form['alternativa2']
@@ -58,7 +58,12 @@ def adicionar():
 def confirmado():
     return render_template("confirmado.html")
 
-@app.route('/editar_1etapa', methods=['POST'])
+@app.route('/editar')
+def editar():
+    return render_template("editar_1etapa.html")
+
+
+@app.route('/buscar_questao', methods=['GET', 'POST'])
 def buscar_questao():
     numero = request.form['numero']
     questao = Questao.query.filter_by(id=numero).first()
@@ -66,9 +71,9 @@ def buscar_questao():
         return redirect(url_for('editar_questao', id=questao.id))
     else:
         return render_template('erro.html', mensagem="Questão não encontrada.")
-    return render_template("editar_1etapa.html")
+    return render_template('editar_1etapa.html')
 
-@app.route('/editar_2etapa/<int:id>', methods=['GET', 'POST'])
+@app.route('/editar_questao/<int:id>', methods=['GET', 'POST'])
 def editar_questao(id):
     questao = Questao.query.get_or_404(id)
     if request.method == 'POST':
@@ -78,10 +83,22 @@ def editar_questao(id):
         return redirect(url_for('confirmado'))
     return render_template('editar_2etapa.html', questao=questao)
 
-@app.route('/excluir')
+@app.route('/excluir', methods=['GET', 'POST'])
 def excluir():
-    return render_template("excluir.html")
+    if request.method == 'POST':
+        questao_id = request.form.get('questao_id')
+        questao = Questao.query.get(questao_id)
 
+        if questao:
+            db.session.delete(questao)
+            db.session.commit()
+            return "Questão excluída com sucesso!"
+        else:
+            return "Questão não encontrada", 404
+
+    # Se o método for GET, exibe o formulário com as questões
+    questoes = Questao.query.all()
+    return render_template('excluir.html', questoes=questoes)
 
 
 if __name__ == "__main__":
