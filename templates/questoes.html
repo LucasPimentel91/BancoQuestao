@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -8,7 +7,22 @@
     <body>
         <ul>
             {% for questao in questoes %}
-            <li>{{ questao.enunciado }}<br>{{ questao.alternativa1 }}<br>{{ questao.alternativa2 }}<br>{{ questao.alternativa3 }}<br>{{ questao.alternativa4 }}<br>{{ questao.alternativa5 }}<br>Resposta: {{ questao.resposta_correta }}</li>
+            <li>{{ questao.enunciado }}<br>
+                <form method="POST" action="/verificar_resposta">
+                    <input type="hidden" name="questao_id" value="{{ questao.id }}">
+                    <input type="radio" id="{{ questao.alternativa1 }}" value="{{ questao.alternativa1 }}" name="resposta">
+                    <label for="{{ questao.alternativa1 }}">{{ questao.alternativa1 }}</label><br>
+                    <input type="radio" id="{{ questao.alternativa2 }}" value="{{ questao.alternativa2 }}" name="resposta">
+                    <label for="{{ questao.alternativa2 }}">{{ questao.alternativa2 }}</label><br>
+                    <input type="radio" id="{{ questao.alternativa3 }}" value="{{ questao.alternativa3 }}" name="resposta">
+                    <label for="{{ questao.alternativa3 }}">{{ questao.alternativa3 }}</label><br>
+                    <input type="radio" id="{{ questao.alternativa4 }}" value="{{ questao.alternativa4 }}" name="resposta">
+                    <label for="{{ questao.alternativa4 }}">{{ questao.alternativa4 }}</label><br>
+                    <input type="radio" id="{{ questao.alternativa5 }}" value="{{ questao.alternativa5 }}" name="resposta">
+                    <label for="{{ questao.alternativa5 }}">{{ questao.alternativa5 }}</label><br><br>
+                    <button type="submit">Enviar resposta</button>
+                </form>
+            </li>
             {% endfor %}
         </ul>
     </body>

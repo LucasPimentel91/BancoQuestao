@@ -19,7 +19,8 @@ class Questao(db.Model):
     alternativa3 = db.Column(db.String(100), nullable=False)
     alternativa4 = db.Column(db.String(100), nullable=False)
     alternativa5 = db.Column(db.String(100), nullable=False)
-
+    resposta_marcada = db.Column(db.String(100), nullable=False)
+    
     def __repr__(self):
         return f"<Questao {self.enunciado}>"
 
@@ -27,10 +28,23 @@ class Questao(db.Model):
 def home():
     return render_template("home.html")
 
-@app.route('/questoes', methods=['GET'])
+@app.route('/questoes')
 def questoes():
-    questoes = Questao.query.all()
     return render_template("questoes.html", questoes=questoes)
+
+@app.route('/verificar_resposta', methods=['POST'])
+def verificar_resposta():
+    questao_id = request.form.get('questao_id')
+    resposta_enviada = request.form.get('resposta')
+    
+    # Buscar a questão no banco de dados
+    questao = Questao.query.get(questao_id)
+    
+    # Verificar se a resposta está correta
+    if questao and resposta_enviada == questao.resposta_correta:
+        return "Resposta correta!"
+    else:
+        return "Resposta incorreta. Tente novamente."
 
 @app.route('/config')
 def config():
