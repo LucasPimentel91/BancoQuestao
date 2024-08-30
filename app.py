@@ -91,7 +91,6 @@ def buscar_questao():
         return redirect(url_for('editar_questao', id=questao.id))
     else:
         return render_template('erro.html', mensagem="Questão não encontrada.")
-    return render_template('editar_1etapa.html')
 
 @app.route('/editar_questao/<int:id>', methods=['GET', 'POST'])
 def editar_questao(id):
