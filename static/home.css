@@ -1,0 +1,29 @@
+* {
+    background-color: blanchedalmond;
+}
+
+
+h1{
+	color: #4272D4; 
+	font-size: 80px; 
+	font-weight: normal; 
+	text-shadow: 2px 5px 11px rgba(0, 0, 0, 0.5) ; 
+	-webkit-text-shadow: 2px 5px 11px rgba(0, 0, 0, 0.5) ; 
+	-moz-text-shadow: 2px 5px 11px rgba(0, 0, 0, 0.5) ; 
+}
+
+h3{
+    color: #181A4A; 
+	font-size: 25px; 
+	font-weight: bold; 
+	text-shadow: 1px -2px 0 rgba(0, 0, 0, 0.0) ; 
+	-webkit-text-shadow: 1px -2px 0 rgba(0, 0, 0, 0.0) ; 
+	-moz-text-shadow: 1px -2px 0 rgba(0, 0, 0, 0.0) ; 
+}
+
+
+
+
+
+
+

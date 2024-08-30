@@ -1,0 +1,56 @@
+* {
+    background-color: blanchedalmond;
+}
+
+h1 {
+    color: #4272D4; 
+    font-size: 80px; 
+    font-weight: normal; 
+    text-shadow: 2px 5px 11px rgba(0, 0, 0, 0.5); 
+    -webkit-text-shadow: 2px 5px 11px rgba(0, 0, 0, 0.5); 
+    -moz-text-shadow: 2px 5px 11px rgba(0, 0, 0, 0.5); 
+}
+
+h3 {
+    color: #181A4A; 
+    font-size: 25px; 
+    font-weight: bold; 
+    text-shadow: 1px -2px 0 rgba(0, 0, 0, 0.0); 
+    -webkit-text-shadow: 1px -2px 0 rgba(0, 0, 0, 0.0); 
+    -moz-text-shadow: 1px -2px 0 rgba(0, 0, 0, 0.0); 
+}
+
+label {
+    color: #181A4A;
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 5px 0;
+}
+
+input[type="text"], input[type="categoria"], input[type="enunciado"], input[type="numero"], input[type="resposta"], input[type="alternativa1"], input[type="alternativa2"], input[type="alternativa3"], input[type="alternativa4"], input[type="alternativa5"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    box-sizing: border-box;
+    border: 2px solid #4272D4;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #4272D4;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #365A9D;
+}

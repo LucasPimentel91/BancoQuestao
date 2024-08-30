@@ -3,17 +3,18 @@
     <head>
        <meta charset="utf-8">
         <title>QuestionBanc</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+        <link rel="stylesheet" href="static/home.css">
+        <h1 class="logo">Question Banc</h1>
     </head>
     <body>
     <header>
         <div class="container">
-            <h1 class="logo">Question Banc</h1>
             <h3>Encontre aqui desafios para aprimorar seus conhecimentos</h3>
             <strong>
                 <nav>
                     <ul class="menu">
-                        <li><a href="{{ url_for('questoes') }}">Responder<br>Questões</a></li>
+                        <li><a href="{{ url_for('exibir_questoes') }}">Responder Questões</a></li>
+                        <br>
                         <li><a href="{{ url_for('config') }}">Configuração</a></li>
                     </ul>
                 </nav>

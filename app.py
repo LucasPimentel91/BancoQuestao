@@ -29,23 +29,22 @@ def home():
     return render_template("home.html")
 
 @app.route('/questoes')
-def questoes():
-    return render_template("questoes.html")
+def exibir_questoes():
+    questoes = Questao.query.all()  
+    return render_template('questoes.html', questoes=questoes)
+
 
 @app.route('/verificar_resposta', methods=['POST'])
 def verificar_resposta():
     questao_id = request.form.get('questao_id')
     resposta_enviada = request.form.get('resposta')
     
-    # Buscar a questão no banco de dados
     questao = Questao.query.get(questao_id)
     
     if questao:
-        # Salva a resposta enviada pelo usuário no banco de dados
         questao.resposta_enviada = resposta_enviada
         db.session.commit()
         
-        # Verifica se a resposta está correta
         if resposta_enviada == questao.resposta_correta:
             return "Resposta correta!"
         else:
@@ -72,7 +71,7 @@ def adicionar():
         nova_questao = Questao(enunciado=enunciado, resposta_correta=resposta_correta, numero=numero, categoria=categoria, alternativa1=alternativa1, alternativa2=alternativa2, alternativa3=alternativa3, alternativa4=alternativa4, alternativa5=alternativa5, resposta_enviada="")
         db.session.add(nova_questao)
         db.session.commit()
-        return redirect(url_for('confirmado'))  # Redireciona para a página que exibe as questões após a adição
+        return redirect(url_for('confirmado'))  
     return render_template("adicionar.html")
 
 @app.route('/confirmado')
@@ -117,7 +116,6 @@ def excluir():
         else:
             return "Questão não encontrada", 404
 
-    # Se o método for GET, exibe o formulário com as questões
     questoes = Questao.query.all()
     return render_template('excluir.html', questoes=questoes)
 
