@@ -10,6 +10,7 @@ db = SQLAlchemy(app)
 
 class Questao(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    numero = db.Column(db.String(100), nullable=False)
     enunciado = db.Column(db.String(200), nullable=False)
     resposta_correta = db.Column(db.String(100), nullable=False)
     categoria = db.Column(db.String(100), nullable=False)
@@ -39,6 +40,7 @@ def config():
 def adicionar():
     if request.method == 'POST':
         enunciado = request.form['enunciado']
+        numero = request.form['numero']
         resposta_correta = request.form['resposta']
         categoria = request.form['categoria']
         alternativa1 = request.form['alternativa1']
@@ -56,9 +58,25 @@ def adicionar():
 def confirmado():
     return render_template("confirmado.html")
 
-@app.route('/editar')
-def editar():
-    return render_template("editar.html")
+@app.route('/editar_1etapa', methods=['POST'])
+def buscar_questao():
+    numero = request.form['numero']
+    questao = Questao.query.filter_by(id=numero).first()
+    if questao:
+        return redirect(url_for('editar_questao', id=questao.id))
+    else:
+        return render_template('erro.html', mensagem="Questão não encontrada.")
+    return render_template("editar_1etapa.html")
+
+@app.route('/editar_2etapa/<int:id>', methods=['GET', 'POST'])
+def editar_questao(id):
+    questao = Questao.query.get_or_404(id)
+    if request.method == 'POST':
+        questao.enunciado = request.form['enunciado']
+        questao.resposta_correta = request.form['resposta_correta']
+        db.session.commit()
+        return redirect(url_for('confirmado'))
+    return render_template('editar_2etapa.html', questao=questao)
 
 @app.route('/excluir')
 def excluir():

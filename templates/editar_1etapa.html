@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Editar questão</title>
+    </head>
+    <body>
+        <h1>Edite aqui suas questões:</h1>
+        <h4>Digite o número da questão:</h4>
+            <form action="{{ url_for('buscar_questao') }}" method="POST">
+                <label for="numero"></label>
+                <input type="numero" id="numero" name="numero" required>
+                <br></br>
+                <button type="Enviar">Buscar questão</button>
+            </form>
+        </body>
+</html>

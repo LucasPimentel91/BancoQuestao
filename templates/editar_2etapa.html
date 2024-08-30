@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Editar Questão</title>
+    </head>
+    <body>
+        <h1>Editando a Questão: {{ questao.id }}</h1>
+        <form action="{{ url_for('editar_questao', id=questao.id) }}" method="POST">
+            <label for="enunciado">Enunciado:</label>
+            <input type="text" id="enunciado" name="enunciado" value="{{ questao.enunciado }}" required>
+            <br></br>
+            <label for="resposta_correta">Resposta Correta:</label>
+            <input type="text" id="resposta_correta" name="resposta_correta" value="{{ questao.resposta_correta }}" required>
+            <br></br>
+            <!-- Adicione outros campos como alternativa1, alternativa2, etc. -->
+            <button type="submit">Salvar Alterações</button>
+        </form>
+    </body>
+</html>
