@@ -1,40 +1,81 @@
-# Banco de Questões com Python e Flask
+## Gerenciador de Questões em Flask
+Este é um projeto de aplicação web desenvolvido em Flask para gerenciar questões de múltipla escolha. A aplicação permite adicionar, editar, excluir e verificar respostas de questões armazenadas em um banco de dados SQLite. Este projeto é ideal para criar e gerenciar bancos de questões em ambientes de estudo ou avaliações.
 
-Este projeto é um banco de questões desenvolvido utilizando Python e Flask. O objetivo é criar uma aplicação web simples para gerenciar e acessar questões de forma eficiente.
-Site de estudo: https://www.freecodecamp.org/portuguese/news/como-criar-uma-aplicacao-da-web-usando-o-flask-e-implanta-la-na-nuvem/
+## Funcionalidades
+Exibir Questões: Visualize todas as questões armazenadas no banco de dados.
+Adicionar Questões: Adicione novas questões com enunciado, alternativas, resposta correta e categoria.
+Editar Questões: Edite os detalhes de uma questão existente, incluindo o enunciado e a resposta correta.
+Excluir Questões: Remova questões do banco de dados.
+Verificar Respostas: Envie respostas para verificar se estão corretas.
+Tecnologias Utilizadas
+Python 3.x
+Flask: Framework web usado para criar a aplicação.
+SQLAlchemy: ORM usado para interação com o banco de dados.
+SQLite: Banco de dados utilizado para armazenar as questões.
+HTML/CSS: Para renderização das páginas web.
+Pré-requisitos
+Antes de executar o projeto, certifique-se de ter o Python 3.x instalado no seu ambiente.
 
-## Pré-requisitos
+## Dependências
+Instale as dependências do projeto usando o pip:
 
-Antes de começar, certifique-se de ter os seguintes pré-requisitos instalados:
+bash
+Copiar código
+pip install -r requirements.txt
+Estrutura do Projeto
+plaintext
+Copiar código
+|-- app.py                  # Arquivo principal da aplicação Flask
+|-- questoes.db             # Banco de dados SQLite (gerado automaticamente)
+|-- templates/
+|   |-- home.html           # Página inicial
+|   |-- questoes.html       # Página que exibe as questões
+|   |-- adicionar.html      # Formulário para adicionar uma nova questão
+|   |-- editar_1etapa.html  # Página para iniciar a edição de uma questão
+|   |-- editar_2etapa.html  # Página para editar uma questão específica
+|   |-- excluir.html        # Página para excluir questões
+|   |-- confirmado.html     # Página de confirmação após operações
+|   |-- erro.html           # Página de erro para buscas não encontradas
+|-- static/
+    |-- styles.css          # Arquivo de estilo CSS
 
-- [Python 3.x](https://www.python.org/downloads/)
-- [Pip](https://pip.pypa.io/en/stable/)
+## Como Executar
+Clone o repositório:
 
-## Instalação
+bash
+Copiar código
+git clone https://github.com/LucasPimentel91/BancoQuestao.git
+cd nome-do-repositorio
+Instale as dependências:
 
-1. Clone o repositório:
+bash
+Copiar código
+pip install -r requirements.txt
+Crie o banco de dados:
 
-    ```bash
-    git clone https://github.com/seu-usuario/nome-do-repositorio.git
-    cd nome-do-repositorio
-    ```
+O banco de dados será criado automaticamente ao executar o aplicativo pela primeira vez.
 
-2. Crie um ambiente virtual e ative-o:
+## Inicie o servidor Flask:
 
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # No Windows: venv\Scripts\activate
-    ```
+bash
+Copiar código
+python app.py
+A aplicação estará disponível em http://127.0.0.1:5000.
 
-3. Instale as dependências:
+Rotas Principais
+/: Página inicial.
+/questoes: Exibe todas as questões.
+/verificar_resposta: Verifica a resposta enviada (POST).
+/adicionar: Página para adicionar uma nova questão.
+/editar: Inicia o processo de edição de uma questão.
+/editar_questao/<int:id>: Edita uma questão específica.
+/excluir: Página para excluir questões.
+/config: Página de configuração da aplicação.
+## Licença
+Este projeto é distribuído sob a licença MIT. Consulte o arquivo LICENSE para obter mais informações.
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+## Contribuições
+Contribuições são bem-vindas! Se você tiver sugestões ou encontrar algum problema, fique à vontade para abrir uma issue ou enviar um pull request.
 
-## Uso
-
-Para iniciar o servidor Flask, execute o seguinte comando:
-
-```bash
-flask run
+## Autor
+Lucas Pimentel - Desenvolvedor - @LucasPimentel91
